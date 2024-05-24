@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'xcok-ambulance-wl-list',
@@ -6,6 +6,8 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class XcokAmbulanceWlList {
+  @Event({ eventName: 'entry-clicked' }) entryClicked: EventEmitter<string>;
+
   waitingPatients: any[];
 
   private async getWaitingPatientsAsync() {
@@ -41,24 +43,24 @@ export class XcokAmbulanceWlList {
     this.waitingPatients = await this.getWaitingPatientsAsync();
   }
 
-  private isoDateToLocale(iso:string) {
-    if(!iso) return '';
-    return new Date(Date.parse(iso)).toLocaleTimeString()
+  private isoDateToLocale(iso: string) {
+    if (!iso) return '';
+    return new Date(Date.parse(iso)).toLocaleTimeString();
   }
 
   render() {
     return (
       <Host>
-       <md-list>
-          {this.waitingPatients.map(patient =>
-            <md-list-item>
+        <md-list>
+          {this.waitingPatients.map((patient, index) => (
+            <md-list-item onClick={() => this.entryClicked.emit(index.toString())}>
               <div slot="headline">{patient.name}</div>
-              <div slot="supporting-text">{"Predpokladaný vstup: " + this.isoDateToLocale(patient.estimatedStart)}</div>
-                <md-icon slot="start">person</md-icon>
+              <div slot="supporting-text">{'Predpokladaný vstup: ' + this.isoDateToLocale(patient.estimatedStart)}</div>
+              <md-icon slot="start">person</md-icon>
             </md-list-item>
-          )}
+          ))}
         </md-list>
-              </Host>
+      </Host>
     );
   }
 }

@@ -6,24 +6,84 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface XcokAmbulanceWlApp {
+        "basePath": string;
+    }
+    interface XcokAmbulanceWlEditor {
+        "entryId": string;
+    }
     interface XcokAmbulanceWlList {
     }
 }
+export interface XcokAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLXcokAmbulanceWlEditorElement;
+}
+export interface XcokAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLXcokAmbulanceWlListElement;
+}
 declare global {
+    interface HTMLXcokAmbulanceWlAppElement extends Components.XcokAmbulanceWlApp, HTMLStencilElement {
+    }
+    var HTMLXcokAmbulanceWlAppElement: {
+        prototype: HTMLXcokAmbulanceWlAppElement;
+        new (): HTMLXcokAmbulanceWlAppElement;
+    };
+    interface HTMLXcokAmbulanceWlEditorElementEventMap {
+        "editor-closed": string;
+    }
+    interface HTMLXcokAmbulanceWlEditorElement extends Components.XcokAmbulanceWlEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLXcokAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLXcokAmbulanceWlEditorElement, ev: XcokAmbulanceWlEditorCustomEvent<HTMLXcokAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLXcokAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLXcokAmbulanceWlEditorElement, ev: XcokAmbulanceWlEditorCustomEvent<HTMLXcokAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLXcokAmbulanceWlEditorElement: {
+        prototype: HTMLXcokAmbulanceWlEditorElement;
+        new (): HTMLXcokAmbulanceWlEditorElement;
+    };
+    interface HTMLXcokAmbulanceWlListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLXcokAmbulanceWlListElement extends Components.XcokAmbulanceWlList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLXcokAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLXcokAmbulanceWlListElement, ev: XcokAmbulanceWlListCustomEvent<HTMLXcokAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLXcokAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLXcokAmbulanceWlListElement, ev: XcokAmbulanceWlListCustomEvent<HTMLXcokAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLXcokAmbulanceWlListElement: {
         prototype: HTMLXcokAmbulanceWlListElement;
         new (): HTMLXcokAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
+        "xcok-ambulance-wl-app": HTMLXcokAmbulanceWlAppElement;
+        "xcok-ambulance-wl-editor": HTMLXcokAmbulanceWlEditorElement;
         "xcok-ambulance-wl-list": HTMLXcokAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
+    interface XcokAmbulanceWlApp {
+        "basePath"?: string;
+    }
+    interface XcokAmbulanceWlEditor {
+        "entryId"?: string;
+        "onEditor-closed"?: (event: XcokAmbulanceWlEditorCustomEvent<string>) => void;
+    }
     interface XcokAmbulanceWlList {
+        "onEntry-clicked"?: (event: XcokAmbulanceWlListCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
+        "xcok-ambulance-wl-app": XcokAmbulanceWlApp;
+        "xcok-ambulance-wl-editor": XcokAmbulanceWlEditor;
         "xcok-ambulance-wl-list": XcokAmbulanceWlList;
     }
 }
@@ -31,6 +91,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "xcok-ambulance-wl-app": LocalJSX.XcokAmbulanceWlApp & JSXBase.HTMLAttributes<HTMLXcokAmbulanceWlAppElement>;
+            "xcok-ambulance-wl-editor": LocalJSX.XcokAmbulanceWlEditor & JSXBase.HTMLAttributes<HTMLXcokAmbulanceWlEditorElement>;
             "xcok-ambulance-wl-list": LocalJSX.XcokAmbulanceWlList & JSXBase.HTMLAttributes<HTMLXcokAmbulanceWlListElement>;
         }
     }
