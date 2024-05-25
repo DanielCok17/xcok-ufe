@@ -14,6 +14,8 @@ export class XcokAmbulanceWlApp {
   @State() private relativePath = '';
 
   @Prop() basePath: string = '';
+  @Prop() apiBase: string;
+  @Prop() ambulanceId: string;
 
   componentWillLoad() {
     const baseUri = new URL(this.basePath, document.baseURI || '/').pathname;
@@ -56,7 +58,7 @@ export class XcokAmbulanceWlApp {
         {element === 'editor' ? (
           <xcok-ambulance-wl-editor entry-id={entryId} oneditor-closed={() => navigate('./list')}></xcok-ambulance-wl-editor>
         ) : (
-          <xcok-ambulance-wl-list onentry-clicked={(ev: CustomEvent<string>) => navigate('./entry/' + ev.detail)}></xcok-ambulance-wl-list>
+          <xcok-ambulance-wl-list ambulance-id={this.ambulanceId} api-base={this.apiBase} onentry-clicked={(ev: CustomEvent<string>) => navigate('./entry/' + ev.detail)}></xcok-ambulance-wl-list>
         )}
       </Host>
     );
