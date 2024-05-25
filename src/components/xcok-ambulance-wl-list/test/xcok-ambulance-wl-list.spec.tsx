@@ -39,4 +39,6 @@ describe('xcok-ambulance-wl-list', () => {
     expect(expectedPatients).toEqual(sampleEntries.length);
     expect(items.length).toEqual(expectedPatients);
   });
+
+  
 });

@@ -56,7 +56,7 @@ export class XcokAmbulanceWlApp {
     return (
       <Host>
         {element === 'editor' ? (
-          <xcok-ambulance-wl-editor entry-id={entryId} oneditor-closed={() => navigate('./list')}></xcok-ambulance-wl-editor>
+          <xcok-ambulance-wl-editor entry-id={entryId} ambulance-id={this.ambulanceId} api-base={this.apiBase} oneditor-closed={() => navigate('./list')}></xcok-ambulance-wl-editor>
         ) : (
           <xcok-ambulance-wl-list ambulance-id={this.ambulanceId} api-base={this.apiBase} onentry-clicked={(ev: CustomEvent<string>) => navigate('./entry/' + ev.detail)}></xcok-ambulance-wl-list>
         )}
